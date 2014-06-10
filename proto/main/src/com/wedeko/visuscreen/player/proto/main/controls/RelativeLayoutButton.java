@@ -85,6 +85,14 @@ public class RelativeLayoutButton extends RelativeLayout {
 		}
 	}
 
+	// method for setting texts for the text views
+	public void setText(int id, int string_id) {
+		View v = findViewById(id);
+		if (null != v && v instanceof TextView) {
+			((TextView) v).setText(string_id);
+		}
+	}
+
 	// method for setting drawable for the images
 	public void setImageDrawable(int id, Drawable drawable) {
 		View v = findViewById(id);
