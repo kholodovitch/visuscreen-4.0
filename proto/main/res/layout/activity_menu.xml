@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
+    android:padding="8dp"
     tools:context="com.wedeko.visuscreen.player.proto.main.activities.MenuActivity" >
 
     <include
         android:id="@+id/button_transitions"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        layout="@layout/control_button" >
+        android:layout_margin="0dp"
+        layout="@layout/control_button">
     </include>
 
 </FrameLayout>

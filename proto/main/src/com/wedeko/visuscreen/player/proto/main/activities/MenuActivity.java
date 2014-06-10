@@ -15,8 +15,8 @@ public class MenuActivity extends Activity {
 		setContentView(R.layout.activity_menu);
 
 		RelativeLayoutButton button3 = new RelativeLayoutButton(this, R.id.button_transitions);
-		button3.setText(R.id.test_button_text1, "Change");
-		button3.setText(R.id.test_button_text2, "image");
-		button3.setImageResource(R.id.test_button_image, android.R.drawable.star_big_on);
+		button3.setText(R.id.test_button_text1, "Transitions");
+		button3.setText(R.id.test_button_text2, "Testing execution of scene switches: without transitions, linear fade, masking fade, 3D transitions and etc...");
+		button3.setImageResource(R.id.test_button_image, R.drawable.button_transitions);
 	}
 }
