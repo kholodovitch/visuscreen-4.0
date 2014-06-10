@@ -3,23 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context="com.wedeko.visuscreen.player.proto.main.MenuActivity" >
+    tools:context="com.wedeko.visuscreen.player.proto.main.activities.MenuActivity" >
 
-    <!--
-         The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc.
-    -->
-
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+    <include
+        android:id="@+id/button_transitions"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/control_button" >
+    </include>
 
 </FrameLayout>
