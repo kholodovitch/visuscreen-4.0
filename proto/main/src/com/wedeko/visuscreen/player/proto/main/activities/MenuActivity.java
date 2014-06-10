@@ -17,6 +17,7 @@ public class MenuActivity extends Activity {
 
 		setContentView(R.layout.activity_menu);
 
+		setButtonValues(R.id.button_localContent, R.string.menu_localContent_header, R.string.menu_localContent_description, R.drawable.button_transitions, ProtoLocalContentActivity.class);
 		setButtonValues(R.id.button_transitions, R.string.menu_transitions_header, R.string.menu_transitions_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
 	}
 

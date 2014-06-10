@@ -1,17 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
-    android:padding="8dp"
-    tools:context="com.wedeko.visuscreen.player.proto.main.activities.MenuActivity" >
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="4dp" >
+
+    <include
+        android:id="@+id/button_localContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" >
+    </include>
 
     <include
         android:id="@+id/button_transitions"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        layout="@layout/control_button">
+        layout="@layout/control_button" >
     </include>
 
-</FrameLayout>
+</LinearLayout>

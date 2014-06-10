@@ -2,11 +2,10 @@
 <resources>
 
     <string name="app_name">VisuScreen (proto)</string>
-    <string name="title_activity_menu">MenuActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_proto_transitions">ProtoTransitionsActivity</string>
     
+    <string name="menu_localContent_header">Local HTML content</string>
+    <string name="menu_localContent_description">Loagind HTML file and needed content (images, scripts, css) from SD card</string>
+
     <string name="menu_transitions_header">Transitions</string>
     <string name="menu_transitions_description">Testing execution of scene switches: without transitions, linear fade, masking fade, 3D transitions and etc...</string>
 

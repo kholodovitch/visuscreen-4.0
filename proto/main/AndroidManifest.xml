@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="8" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,6 @@
         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         <activity
             android:name=".activities.MenuActivity"
-            android:label="@string/title_activity_menu"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -23,10 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.ProtoTransitionsActivity"
-            android:label="@string/title_activity_proto_transitions" >
-        </activity>
+        <activity android:name="com.wedeko.visuscreen.player.proto.main.activities.ProtoTransitionsActivity" />
+        <activity android:name="com.wedeko.visuscreen.player.proto.main.activities.ProtoLocalContentActivity" />
     </application>
 
 </manifest>
