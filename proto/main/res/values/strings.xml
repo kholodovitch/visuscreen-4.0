@@ -2,11 +2,23 @@
 <resources>
 
     <string name="app_name">VisuScreen (proto)</string>
-    
     <string name="menu_localContent_header">Local HTML content</string>
     <string name="menu_localContent_description">Loagind HTML file and needed content (images, scripts, css) from SD card</string>
-
     <string name="menu_transitions_header">Transitions</string>
     <string name="menu_transitions_description">Testing execution of scene switches: without transitions, linear fade, masking fade, 3D transitions and etc...</string>
-
+    <string name="menu_schedule_header">Schedule</string>
+    <string name="menu_schedule_description"></string>
+    <string name="menu_html5_from_json_header">HTML5 + JS from JSON</string>
+    <string name="menu_html5_from_json_description"></string>
+    <string name="menu_json_server_header">JSON server</string>
+    <string name="menu_json_server_description"></string>
+    <string name="menu_async_client_header">Async client</string>
+    <string name="menu_async_client_description"></string>
+    <string name="menu_local_storage_header">Local storage</string>
+    <string name="menu_local_storage_description"></string>
+    <string name="menu_unloading_scenes_header">Unloading scenes</string>
+    <string name="menu_unloading_scenes_description"></string>
+    <string name="menu_screenshoting_header">Screenshoting</string>
+    <string name="menu_screenshoting_description"></string>
+    
 </resources>

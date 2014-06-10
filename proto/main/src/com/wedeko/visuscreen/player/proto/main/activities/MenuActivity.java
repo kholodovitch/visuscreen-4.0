@@ -19,6 +19,13 @@ public class MenuActivity extends Activity {
 
 		setButtonValues(R.id.button_localContent, R.string.menu_localContent_header, R.string.menu_localContent_description, R.drawable.button_transitions, ProtoLocalContentActivity.class);
 		setButtonValues(R.id.button_transitions, R.string.menu_transitions_header, R.string.menu_transitions_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_schedule, R.string.menu_schedule_header, R.string.menu_schedule_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_html5_from_json, R.string.menu_html5_from_json_header, R.string.menu_html5_from_json_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_json_server, R.string.menu_json_server_header, R.string.menu_json_server_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_async_client, R.string.menu_async_client_header, R.string.menu_async_client_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_local_storage, R.string.menu_local_storage_header, R.string.menu_local_storage_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_unloading_scenes, R.string.menu_unloading_scenes_header, R.string.menu_unloading_scenes_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
+		setButtonValues(R.id.button_screenshoting, R.string.menu_screenshoting_header, R.string.menu_screenshoting_description, R.drawable.button_transitions, ProtoTransitionsActivity.class);
 	}
 
 	protected void setButtonValues(int buttonId, int headerId, int descriptionId, int imageId, final Class<?> nextActivitiy) {

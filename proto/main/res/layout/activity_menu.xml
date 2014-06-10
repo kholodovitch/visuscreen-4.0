@@ -10,15 +10,62 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        layout="@layout/control_button" >
-    </include>
+        layout="@layout/control_button" />
 
     <include
         android:id="@+id/button_transitions"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        layout="@layout/control_button" >
-    </include>
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_schedule"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_html5_from_json"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_json_server"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_async_client"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_local_storage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_unloading_scenes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
+
+    <include
+        android:id="@+id/button_screenshoting"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        layout="@layout/control_button" />
 
 </LinearLayout>
