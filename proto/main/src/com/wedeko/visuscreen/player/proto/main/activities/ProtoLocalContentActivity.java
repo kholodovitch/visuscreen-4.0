@@ -29,6 +29,7 @@ public class ProtoLocalContentActivity extends Activity {
 		webView.getSettings().setUseWideViewPort(true);
 		webView.getSettings().setLoadWithOverviewMode(true);
 		webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+		webView.getSettings().setJavaScriptEnabled(true);
 
 		// Initialize the VideoEnabledWebChromeClient and set event handlers
 		View nonVideoLayout = findViewById(R.id.nonVideoLayout); // Your own view, read class comments
