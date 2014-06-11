@@ -28,6 +28,7 @@ public class ProtoLocalContentActivity extends Activity {
 		webView = (VideoEnabledWebView) findViewById(R.id.webView);
 		webView.getSettings().setUseWideViewPort(true);
 		webView.getSettings().setLoadWithOverviewMode(true);
+		webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
 
 		// Initialize the VideoEnabledWebChromeClient and set event handlers
 		View nonVideoLayout = findViewById(R.id.nonVideoLayout); // Your own view, read class comments
@@ -66,6 +67,6 @@ public class ProtoLocalContentActivity extends Activity {
 		});
 		webView.setWebChromeClient(webChromeClient);
 
-		webView.loadUrl("file://" + PlayerApplication.getStorageDirectory() + "/index.html");
+		webView.loadUrl("file://" + PlayerApplication.getStorageDirectory() + "/video.html");
 	}
 }
