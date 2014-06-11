@@ -4,7 +4,6 @@ import java.io.File;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.os.Environment;
 import android.util.Log;
 
@@ -31,9 +30,9 @@ public class PlayerApplication extends Application {
 	}
 
 	public static String getStorageDirectory() {
-		File baseFolder = canWriteOnExternalStorage() ? Environment.getExternalStorageDirectory() : new ContextWrapper(Context).getFilesDir();
-		File contentFolder = new File(baseFolder + "/VisuScreen/");
-		
+		String contentFolderStr = canWriteOnExternalStorage() ? (Context.getExternalFilesDir(null).getAbsolutePath()) : (Context.getApplicationInfo().dataDir + "/storage/");
+		File contentFolder = new File(contentFolderStr);
+
 		contentFolder.mkdirs();
 
 		return contentFolder.getAbsolutePath();
