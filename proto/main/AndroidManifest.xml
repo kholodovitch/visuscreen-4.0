@@ -8,6 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="8" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,8 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.wedeko.visuscreen.player.proto.main.activities.ProtoTransitionsActivity" />
-        <activity android:name="com.wedeko.visuscreen.player.proto.main.activities.ProtoLocalContentActivity" />
+        <activity android:name=".activities.ProtoTransitionsActivity" />
+        <activity android:name=".activities.ProtoLocalContentActivity" />
     </application>
 
 </manifest>
