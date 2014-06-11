@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.wedeko.visuscreen.player.proto.main.R;
+import com.wedeko.visuscreen.player.proto.R;
 import com.wedeko.visuscreen.player.proto.main.controls.RelativeLayoutButton;
 
 public class MenuActivity extends Activity {
