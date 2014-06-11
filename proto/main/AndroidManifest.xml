@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ProtoTransitionsActivity" />
-        <activity android:name=".activities.ProtoLocalContentActivity" />
+        <activity
+            android:name=".activities.ProtoLocalContentActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

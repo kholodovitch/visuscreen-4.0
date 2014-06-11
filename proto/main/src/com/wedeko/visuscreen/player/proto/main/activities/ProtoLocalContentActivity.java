@@ -5,6 +5,7 @@ import java.io.File;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -20,14 +21,15 @@ public class ProtoLocalContentActivity extends Activity {
 		webView.setClickable(true);
 		wSettings = webView.getSettings();
 		wSettings.setJavaScriptEnabled(true);
-		wSettings.setUseWideViewPort(true); 
+		wSettings.setUseWideViewPort(true);
+		wSettings.setLoadWithOverviewMode(true);
 
 		/**
 		 * <b> Support Classes For WebView </b>
 		 */
 		WebClientClass webViewClient = new WebClientClass();
 		webView.setWebViewClient(webViewClient);
-		android.webkit.WebChromeClient webChromeClient = new android.webkit.WebChromeClient();
+		WebChromeClient webChromeClient = new WebChromeClient();
 		webView.setWebChromeClient(webChromeClient);
 
 		/**
@@ -37,6 +39,5 @@ public class ProtoLocalContentActivity extends Activity {
 		File html = new File(rootsd.getAbsolutePath() + "/VisuScreen/index.html");
 		webView.loadUrl("file://" + html.getAbsolutePath());
 		setContentView(webView);
-
 	}
 }
