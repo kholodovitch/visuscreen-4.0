@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>Example Fullscreen API</title>
+	<style type="text/css">
+		body
+		{
+			background-color: #000000;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		img
+		{
+			left: 0px;
+			top: 0px;
+			width: 1920px;
+			height: 1080px;
+			position: absolute;
+		}
+
+		#cubeCarousel
+		{
+			-webkit-perspective: 4960;
+			-moz-perspective: 4960;
+			-ms-perspective: 4960;
+			perspective: 4960;
+			-webkit-perspective-origin: 50% 100px;
+			-moz-perspective-origin: 50% 100px;
+			-ms-perspective-origin: 50% 100px;
+			perspective-origin: 50% 100px;
+			width: 1920px;
+			height: 1080px;
+			position: absolute;
+		}
+
+			#cubeCarousel #cubeSpinner
+			{
+				position: relative;
+				margin: 0 auto;
+				height: 1080px;
+				width: 1920px;
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				-ms-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				-webkit-transform-origin: 50% 100px 0;
+				-moz-transform-origin: 50% 100px 0;
+				-ms-transform-origin: 50% 100px 0;
+				transform-origin: 50% 100px 0;
+				-webkit-transition: all 1.5s ease-in-out;
+				-moz-transition: all 1.5s ease-in-out;
+				-ms-transition: all 1.5s ease-in-out;
+				transition: all 1.5s ease-in-out;
+			}
+
+			#cubeCarousel #Ycube, #cubeCarousel #Zcube
+			{
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				-ms-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+
+			#cubeCarousel .face
+			{
+				position: absolute;
+				height: 1080px;
+				width: 1920px;
+				padding: 0px;
+			}
+
+
+		#cubeSpinner .one
+		{
+			-webkit-transform: translateZ(0px);
+			-moz-transform: translateZ(0px);
+			-ms-transform: translateZ(0px);
+			transform: translateZ(0px);
+		}
+
+		#cubeSpinner .two
+		{
+			-webkit-transform: rotateY(180deg) translateZ(0px);
+			-moz-transform: rotateY(180deg) translateZ(0px);
+			-ms-transform: rotateY(180deg) translateZ(0px);
+			transform: rotateY(180deg) translateZ(0px);
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
+	<script>
+		function sleep(millis, callback) {
+			setTimeout(function ()
+			{ callback(); }
+            , millis);
+		}
+
+		$(document).ready(function () {
+			function fullScreen(element) {
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.webkitRequestFullscreen) {
+					element.webkitRequestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				}
+			}
+
+			function fullScreenCancel() {
+				if (document.requestFullscreen) {
+					document.requestFullscreen();
+				} else if (document.webkitRequestFullscreen) {
+					document.webkitRequestFullscreen();
+				} else if (document.mozRequestFullScreen) {
+					document.mozRequestFullScreen();
+				}
+			}
+
+			function endRotation(event) {
+				scene0.style.visibility = "hidden";
+				scene1.style.visibility = "visible";
+				cubeSpinner.removeEventListener("webkitTransitionEnd", endRotation, false);
+				$("#cubeSpinner").css("transform", "rotateY(" + (2 * -90) + "deg)");
+			}
+			cubeSpinner.addEventListener("webkitTransitionEnd", endRotation, false);
+
+			function foobar_cont() {
+				$("#cubeSpinner").css("transform", "rotateY(" + (1 * -90) + "deg)");
+			}
+			/*
+			cubeSpinner.addEventListener("webkitTransitionEnd", function (event) {
+				alert();
+			}, false);
+			*/
+			$('html').keydown(function (event) {
+				if (event.keyCode == 70) {
+					var html = document.documentElement;
+					fullScreen(html);
+				}
+				if (event.keyCode == 27) {
+					fullScreenCancel();
+				}
+			});
+
+			sleep(1000, foobar_cont);
+		});
+	</script>
+</head>
+<body>
+	<div id="cubeCarousel">
+		<div id="cubeSpinner" style="-webkit-transform: rotateY(0deg);">
+			<div class="face one" id="scene0">
+				<img src="scene0.jpg" class="transitionSpinOut" />
+			</div>
+			<div class="face two" id="scene1" style="visibility: hidden">
+				<img src="scene1.jpg" class="transitionSpinOut" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>
