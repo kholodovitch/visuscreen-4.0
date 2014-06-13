@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>Example Fullscreen API</title>
+	<style type="text/css">
+		body
+		{
+			background-color: #000000;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		img
+		{
+			left: 0px;
+			top: 0px;
+			width: 1920px;
+			height: 1080px;
+			position: absolute;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
+	<script>
+		function sleep(millis, callback) {
+			setTimeout(function ()
+			{ callback(); }
+            , millis);
+		}
+
+		$(document).ready(function () {
+			function foobar_cont() {
+				if (scene1.style.visibility == "visible") {
+					scene0.style.visibility = "visible";
+					scene1.style.visibility = "hidden";
+				} else {
+					scene0.style.visibility = "hidden";
+					scene1.style.visibility = "visible";
+				}
+
+				sleep(5000, foobar_cont);
+			}
+
+			$('html').keydown(function (event) {
+				if (event.keyCode == 70) {
+					var html = document.documentElement;
+					fullScreen(html);
+				}
+				if (event.keyCode == 27) {
+					fullScreenCancel();
+				}
+			});
+
+			sleep(1000, foobar_cont);
+		});
+	</script>
+</head>
+<body>
+	<div id="scene0">
+		<img src="scene0.jpg" />
+	</div>
+	<div id="scene1" style="visibility: hidden">
+		<img src="scene1.jpg" />
+	</div>
+</body>
+</html>
