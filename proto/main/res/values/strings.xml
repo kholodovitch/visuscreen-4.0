@@ -21,4 +21,24 @@
     <string name="menu_screenshoting_header">Screenshoting</string>
     <string name="menu_screenshoting_description"></string>
     
+    <string name="transition_3D_door">3D door</string>
+    <string name="transition_3D_explosion">3D explosion</string>
+    <string name="transition_3D_rotate">3D rotate</string>
+    <string name="transition_3D_spin">3D spin</string>
+    <string name="transition_diagonal_wipe">Diagonal wipe</string>
+    <string name="transition_diagonal_wipe2">Diagonal wipe 2</string>
+    <string name="transition_eye">Eye</string>
+    <string name="transition_fade">Fade</string>
+    <string name="transition_fade_wipe2">Fade wipe 2</string>
+    <string name="transition_horizontal_wipe">Horizontal wipe</string>
+    <string name="transition_horizontal_wipe2">Horizontal wipe 2</string>
+    <string name="transition_melt">Melt</string>
+    <string name="transition_roll">Roll</string>
+    <string name="transition_rotate_wipe">Rotate wipe</string>
+    <string name="transition_rotate_wipe2">Rotate wipe 2</string>
+    <string name="transition_star">Star</string>
+    <string name="transition_vertical_wipe">Vertical wipe</string>
+    <string name="transition_vertical_wipe2">Vertical wipe 2</string>
+    <string name="transition_without_transition">Without transition</string>
+
 </resources>
