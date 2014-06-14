@@ -1,5 +1,7 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
-
+    <color name="bg_odd">#FFF</color>
+    <color name="bg_even">#F0F0F0</color>
+    
 </resources>

@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="6dp" >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="4dip"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/button_transitions" />
+
+    <TextView
+        android:id="@+id/transition_name"
+        android:layout_width="fill_parent"
+        android:layout_height="28dip"
+        android:paddingLeft="12dp"
+        android:gravity="center_vertical"
+        android:textSize="20sp" />
+
+</LinearLayout>
