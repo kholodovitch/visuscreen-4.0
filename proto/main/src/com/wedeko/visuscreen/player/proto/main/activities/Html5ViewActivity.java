@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 
 import com.wedeko.visuscreen.player.proto.R;
+import com.wedeko.visuscreen.player.proto.main.PlayerApplication;
 import com.wedeko.visuscreen.player.proto.main.controls.VideoEnabledWebChromeClient;
 import com.wedeko.visuscreen.player.proto.main.controls.VideoEnabledWebView;
 
@@ -66,5 +67,12 @@ public class Html5ViewActivity extends Activity {
 			}
 		});
 		webView.setWebChromeClient(webChromeClient);
+
+		Bundle bundle = getIntent().getExtras();
+		if (bundle != null) {
+			String targetHtml = bundle.getString("target_html");
+			if (targetHtml != null)
+				webView.loadUrl("file://" + PlayerApplication.getStorageDirectory() + "/" + targetHtml);
+		}
 	}
 }
