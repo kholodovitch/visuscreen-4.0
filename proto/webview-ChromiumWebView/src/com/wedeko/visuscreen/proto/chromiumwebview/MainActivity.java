@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		WebView webView = (WebView) findViewById(R.id.webView);
-		webView.loadUrl("http://home.kholodovitch.com/test/html5-transitions/transition_horizontalWipe.html");
+		webView.loadUrl("/storage/emulated/0/VisuScreen/transition_fade.html");
 		webView.getSettings().setUseWideViewPort(true);
 		webView.getSettings().setLoadWithOverviewMode(true);
 		webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
