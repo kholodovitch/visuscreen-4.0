@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ProtoTransitionsActivity extends Activity {
 	static ArrayList<TransitionInfo> values;
@@ -21,23 +22,23 @@ public class ProtoTransitionsActivity extends Activity {
 		TransitionInfo[] asArray = new TransitionInfo[] {
 				new TransitionInfo(R.string.transition_without_transition, R.drawable.transition_without_transition, "transition_none.html"),
 				new TransitionInfo(R.string.transition_fade, R.drawable.transition_fade, "transition_fade.html"),
-				new TransitionInfo(R.string.transition_fade_wipe2, R.drawable.transition_fade_wipe2, ""),
-				new TransitionInfo(R.string.transition_star, R.drawable.transition_star, ""),
-				new TransitionInfo(R.string.transition_eye, R.drawable.transition_eye, ""),
-				new TransitionInfo(R.string.transition_melt, R.drawable.transition_melt, ""),
-				new TransitionInfo(R.string.transition_horizontal_wipe, R.drawable.transition_horizontal_wipe, ""),
-				new TransitionInfo(R.string.transition_horizontal_wipe2, R.drawable.transition_horizontal_wipe2, ""),
-				new TransitionInfo(R.string.transition_vertical_wipe, R.drawable.transition_vertical_wipe, ""),
-				new TransitionInfo(R.string.transition_vertical_wipe2, R.drawable.transition_vertical_wipe2, ""),
-				new TransitionInfo(R.string.transition_diagonal_wipe, R.drawable.transition_diagonal_wipe, ""),
-				new TransitionInfo(R.string.transition_diagonal_wipe2, R.drawable.transition_diagonal_wipe2, ""),
-				new TransitionInfo(R.string.transition_rotate_wipe, R.drawable.transition_rotate_wipe, ""),
-				new TransitionInfo(R.string.transition_rotate_wipe2, R.drawable.transition_rotate_wipe2, ""),
-				new TransitionInfo(R.string.transition_roll, R.drawable.transition_roll, ""),
-				new TransitionInfo(R.string.transition_3D_door, R.drawable.transition_3d_door, ""),
-				new TransitionInfo(R.string.transition_3D_rotate, R.drawable.transition_3d_rotate, ""),
-				new TransitionInfo(R.string.transition_3D_spin, R.drawable.transition_3d_spin, ""),
-				new TransitionInfo(R.string.transition_3D_explosion, R.drawable.transition_3d_explosion, ""),
+				new TransitionInfo(R.string.transition_fade_wipe2, R.drawable.transition_fade_wipe2, null),
+				new TransitionInfo(R.string.transition_star, R.drawable.transition_star, null),
+				new TransitionInfo(R.string.transition_eye, R.drawable.transition_eye, null),
+				new TransitionInfo(R.string.transition_melt, R.drawable.transition_melt, null),
+				new TransitionInfo(R.string.transition_horizontal_wipe, R.drawable.transition_horizontal_wipe, null),
+				new TransitionInfo(R.string.transition_horizontal_wipe2, R.drawable.transition_horizontal_wipe2, null),
+				new TransitionInfo(R.string.transition_vertical_wipe, R.drawable.transition_vertical_wipe, null),
+				new TransitionInfo(R.string.transition_vertical_wipe2, R.drawable.transition_vertical_wipe2, null),
+				new TransitionInfo(R.string.transition_diagonal_wipe, R.drawable.transition_diagonal_wipe, null),
+				new TransitionInfo(R.string.transition_diagonal_wipe2, R.drawable.transition_diagonal_wipe2, null),
+				new TransitionInfo(R.string.transition_rotate_wipe, R.drawable.transition_rotate_wipe, null),
+				new TransitionInfo(R.string.transition_rotate_wipe2, R.drawable.transition_rotate_wipe2, null),
+				new TransitionInfo(R.string.transition_roll, R.drawable.transition_roll, null),
+				new TransitionInfo(R.string.transition_3D_door, R.drawable.transition_3d_door, null),
+				new TransitionInfo(R.string.transition_3D_rotate, R.drawable.transition_3d_rotate, null),
+				new TransitionInfo(R.string.transition_3D_spin, R.drawable.transition_3d_spin, null),
+				new TransitionInfo(R.string.transition_3D_explosion, R.drawable.transition_3d_explosion, null),
 		};
 		values = new ArrayList<TransitionInfo>(Arrays.asList(asArray));
 	}
@@ -61,6 +62,10 @@ public class ProtoTransitionsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				final TransitionInfo item = (TransitionInfo) parent.getItemAtPosition(position);
+				if (item.getTargetHtml() == null) {
+					Toast.makeText(ProtoTransitionsActivity.this, "Coming soon...", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				Bundle bundle = new Bundle();
 				bundle.putString("target_html", item.getTargetHtml());

@@ -37,7 +37,7 @@ public class TransitionItemAdapter extends ArrayAdapter<TransitionInfo> {
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 		TransitionInfo transitionItem = items.get(position);
 
-		if (transitionItem.getTargetHtml() == null || transitionItem.getTargetHtml() == "")
+		if (transitionItem.getTargetHtml() == null)
 			textView.setEnabled(false);
 		textView.setText(transitionItem.getName());
 		imageView.setImageResource(transitionItem.getImageId());

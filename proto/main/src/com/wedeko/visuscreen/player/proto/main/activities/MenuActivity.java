@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.wedeko.visuscreen.player.proto.R;
 import com.wedeko.visuscreen.player.proto.main.controls.PrototypeItemAdapter;
@@ -51,8 +52,10 @@ public class MenuActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				final PrototypeInfo item = (PrototypeInfo) parent.getItemAtPosition(position);
-				if (item.getNextActivityClass() == null)
+				if (item.getNextActivityClass() == null) {
+					Toast.makeText(MenuActivity.this, "Coming soon...", Toast.LENGTH_SHORT).show();
 					return;
+				}
 
 				Intent intent = new Intent();
 				intent.setClass(parent.getContext(), item.getNextActivityClass());
