@@ -53,15 +53,17 @@ public class AssetsHelper {
 	}
 
 	private static void copyFile(String filename) {
+		String newFileName = TARGET_BASE_PATH + "/" + filename;
+		if (new File(newFileName).exists())
+			return;
+		
 		AssetManager assetManager = PlayerApplication.Context.getAssets();
 
 		InputStream in = null;
 		OutputStream out = null;
-		String newFileName = null;
 		try {
 			Log.i("tag", "copyFile() " + filename);
 			in = assetManager.open(filename);
-			newFileName = TARGET_BASE_PATH + "/" + filename;
 			out = new FileOutputStream(newFileName);
 
 			byte[] buffer = new byte[1024];
