@@ -1,7 +1,10 @@
 package com.wedeko.visuscreen.player.proto.main.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.view.WindowManager;
 
 import com.mogoweb.chrome.WebView;
 import com.wedeko.visuscreen.player.proto.R;
@@ -14,7 +17,9 @@ public class Html5ViewActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
 		// Set layout
 		setContentView(R.layout.activity_html5view);
 
