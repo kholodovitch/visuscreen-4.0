@@ -30,8 +30,7 @@ public class PlayerApplication extends Application {
 	}
 
 	public static String getStorageDirectory() {
-		String contentFolderStr = Environment.getExternalStorageDirectory().getAbsoluteFile() + "/VisuScreen/";
-		// contentFolderStr = canWriteOnExternalStorage() ? (Context.getExternalFilesDir(null).getAbsolutePath()) : (Context.getApplicationInfo().dataDir + "/storage/");
+		String contentFolderStr = canWriteOnExternalStorage() ? (Context.getExternalFilesDir(null).getAbsolutePath()) : (Context.getApplicationInfo().dataDir + "/storage/");
 		File contentFolder = new File(contentFolderStr);
 
 		contentFolder.mkdirs();

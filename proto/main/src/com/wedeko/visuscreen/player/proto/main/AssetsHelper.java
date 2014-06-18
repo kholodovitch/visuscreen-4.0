@@ -61,11 +61,7 @@ public class AssetsHelper {
 		try {
 			Log.i("tag", "copyFile() " + filename);
 			in = assetManager.open(filename);
-			if (filename.endsWith(".jpg")) // extension was added to avoid
-											// compression on APK file
-				newFileName = TARGET_BASE_PATH + "/" + filename.substring(0, filename.length() - 4);
-			else
-				newFileName = TARGET_BASE_PATH + "/" + filename;
+			newFileName = TARGET_BASE_PATH + "/" + filename;
 			out = new FileOutputStream(newFileName);
 
 			byte[] buffer = new byte[1024];
