@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:background="@drawable/splash_background" android:gravity="center_horizontal"
+	android:orientation="vertical">
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:layout_gravity="top"
+		android:layout_weight="10" />
+	<ImageView
+		android:src="@drawable/splash_logo"
+		android:id="@+id/imageView1"
+		android:layout_weight="6"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_gravity="center" />
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:layout_gravity="top"
+		android:layout_weight="6" />
+	<ImageView
+		android:src="@drawable/splash_icon"
+		android:id="@+id/imageView1"
+		android:layout_weight="28.0"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_gravity="center" />
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:layout_gravity="bottom"
+		android:layout_weight="10.0" />
+
+	<View
+		android:layout_width="fill_parent"
+		android:layout_gravity="bottom"
+		android:layout_weight="12.5"
+		android:layout_height="1dp" />
+</LinearLayout>
