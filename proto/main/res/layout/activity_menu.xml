@@ -1,71 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingTop="4dp" >
+    android:background="#FFFFFF"
+    android:padding="0dp"
+    tools:context="com.wedeko.visuscreen.player.proto.main.activities.ProtoTransitionsActivity" >
 
-    <include
-        android:id="@+id/button_localContent"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_transitions"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_schedule"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_html5_from_json"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_json_server"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_async_client"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_local_storage"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_unloading_scenes"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
-    <include
-        android:id="@+id/button_screenshoting"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        layout="@layout/control_button" />
-
+    <ListView
+        android:id="@+id/listview_prototypes"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" />
 </LinearLayout>

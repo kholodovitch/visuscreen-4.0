@@ -11,16 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wedeko.visuscreen.player.proto.R;
-import com.wedeko.visuscreen.player.proto.main.dataobjects.TransitionInfo;
+import com.wedeko.visuscreen.player.proto.main.dataobjects.PrototypeInfo;
 
-public class TransitionItemAdapter extends ArrayAdapter<TransitionInfo> {
+public class PrototypeItemAdapter extends ArrayAdapter<PrototypeInfo> {
 
 	private Context context;
-	private ArrayList<TransitionInfo> items;
+	private ArrayList<PrototypeInfo> items;
 	private int bg_even;
 	private int bg_odd;
 
-	public TransitionItemAdapter(Context context, int textViewResourceId, ArrayList<TransitionInfo> items) {
+	public PrototypeItemAdapter(Context context, int textViewResourceId, ArrayList<PrototypeInfo> items) {
 		super(context, textViewResourceId, items);
 		this.context = context;
 		this.items = items;
@@ -32,15 +32,19 @@ public class TransitionItemAdapter extends ArrayAdapter<TransitionInfo> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.row_transition, parent, false);
-		TextView textView = (TextView) rowView.findViewById(R.id.transition_name);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-		TransitionInfo transitionItem = items.get(position);
+		View rowView = inflater.inflate(R.layout.row_prototype, parent, false);
+		TextView textName = (TextView) rowView.findViewById(R.id.test_button_text1);
+		TextView textDescription = (TextView) rowView.findViewById(R.id.test_button_text2);
+		ImageView imageView = (ImageView) rowView.findViewById(R.id.test_button_image);
+		PrototypeInfo prototypeItem = items.get(position);
 
-		if (transitionItem.getTargetHtml() == null || transitionItem.getTargetHtml() == "")
-			textView.setEnabled(false);
-		textView.setText(transitionItem.getName());
-		imageView.setImageResource(transitionItem.getImageId());
+		if (prototypeItem.getNextActivityClass() == null) {
+			textName.setEnabled(false);
+			textDescription.setEnabled(false);
+		}
+		textName.setText(prototypeItem.getName());
+		textDescription.setText(prototypeItem.getDescription());
+		imageView.setImageResource(prototypeItem.getImageId());
 
 		if (position % 2 == 0)
 			rowView.setBackgroundColor(bg_even);
@@ -49,4 +53,5 @@ public class TransitionItemAdapter extends ArrayAdapter<TransitionInfo> {
 
 		return rowView;
 	}
+
 }

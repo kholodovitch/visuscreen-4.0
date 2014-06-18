@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp" >
 
     <ImageView
         android:id="@+id/test_button_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:paddingRight="8dp">
+        android:paddingRight="8dp" >
     </ImageView>
 
     <TextView
@@ -25,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/test_button_text1"
-        android:layout_below="@+id/test_button_text1">
+        android:layout_below="@+id/test_button_text1" >
     </TextView>
 
 </RelativeLayout>
