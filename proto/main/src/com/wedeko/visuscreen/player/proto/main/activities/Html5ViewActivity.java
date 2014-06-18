@@ -1,9 +1,7 @@
 package com.wedeko.visuscreen.player.proto.main.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.view.WindowManager;
 
 import com.mogoweb.chrome.WebView;
@@ -18,11 +16,11 @@ public class Html5ViewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
 		// Set layout
 		setContentView(R.layout.activity_html5view);
 
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
 		// Save the web view
 		webView = (WebView) findViewById(R.id.webView);
 		webView.getSettings().setUseWideViewPort(true);
