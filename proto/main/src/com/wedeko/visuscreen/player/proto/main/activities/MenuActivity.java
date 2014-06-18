@@ -19,15 +19,15 @@ public class MenuActivity extends Activity {
 
 	static {
 		PrototypeInfo[] asArray = new PrototypeInfo[] {
-				new PrototypeInfo(R.string.menu_localContent_header, R.string.menu_localContent_description, R.drawable.button_transitions, ProtoLocalContentActivity.class),
-				new PrototypeInfo(R.string.menu_transitions_header, R.string.menu_transitions_description, R.drawable.button_transitions, ProtoTransitionsActivity.class),
-				new PrototypeInfo(R.string.menu_schedule_header, R.string.menu_schedule_description, R.drawable.button_transitions, null),
-				new PrototypeInfo(R.string.menu_html5_from_json_header, R.string.menu_html5_from_json_description, R.drawable.button_transitions, null),
-				new PrototypeInfo(R.string.menu_json_server_header, R.string.menu_json_server_description, R.drawable.button_transitions, null),
-				new PrototypeInfo(R.string.menu_async_client_header, R.string.menu_async_client_description, R.drawable.button_transitions, null),
-				new PrototypeInfo(R.string.menu_local_storage_header, R.string.menu_local_storage_description, R.drawable.button_transitions, null),
-				new PrototypeInfo(R.string.menu_unloading_scenes_header, R.string.menu_unloading_scenes_description, R.drawable.button_transitions, null),
-				new PrototypeInfo(R.string.menu_screenshoting_header, R.string.menu_screenshoting_description, R.drawable.button_transitions, null),
+				new PrototypeInfo(R.string.menu_localContent_header, R.string.menu_localContent_description, R.drawable.ic_action_sd_storage, ProtoLocalContentActivity.class),
+				new PrototypeInfo(R.string.menu_transitions_header, R.string.menu_transitions_description, R.drawable.ic_action_transition, ProtoTransitionsActivity.class),
+				new PrototypeInfo(R.string.menu_schedule_header, R.string.menu_schedule_description, R.drawable.ic_action_about, null),
+				new PrototypeInfo(R.string.menu_html5_from_json_header, R.string.menu_html5_from_json_description, R.drawable.ic_action_about, null),
+				new PrototypeInfo(R.string.menu_json_server_header, R.string.menu_json_server_description, R.drawable.ic_action_about, null),
+				new PrototypeInfo(R.string.menu_async_client_header, R.string.menu_async_client_description, R.drawable.ic_action_about, null),
+				new PrototypeInfo(R.string.menu_local_storage_header, R.string.menu_local_storage_description, R.drawable.ic_action_about, null),
+				new PrototypeInfo(R.string.menu_unloading_scenes_header, R.string.menu_unloading_scenes_description, R.drawable.ic_action_about, null),
+				new PrototypeInfo(R.string.menu_screenshoting_header, R.string.menu_screenshoting_description, R.drawable.ic_action_about, null),
 		};
 		values = new ArrayList<PrototypeInfo>(Arrays.asList(asArray));
 	}
@@ -51,6 +51,8 @@ public class MenuActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				final PrototypeInfo item = (PrototypeInfo) parent.getItemAtPosition(position);
+				if (item.getNextActivityClass() == null)
+					return;
 
 				Intent intent = new Intent();
 				intent.setClass(parent.getContext(), item.getNextActivityClass());
