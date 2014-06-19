@@ -40,6 +40,12 @@
 			transition: all 3s ease-in-out;
 		}
 
+		#scene1_wrapper
+		{
+			-webkit-mask-size: 1920px 1080px;
+			-webkit-mask-box-image: -webkit-linear-gradient(left, transparent, transparent 10%, white 25%);
+			-webkit-mask-position: 0px;
+		}
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
@@ -154,7 +160,7 @@
 		</div>
 	</div>
 
-	<div id="scene1_wrapper" style="visibility: visible; -webkit-mask-size: 1920px 1px; -webkit-mask-box-image: -webkit-linear-gradient(left, transparent, white 45%); -webkit-mask-position: 1220px 0px;">
+	<div id="scene1_wrapper" style="visibility: visible;">
 		<div class="transition" id="scene1">
 			<img src="scene1.jpg" class="transitionSpinOut"/>
 		</div>
