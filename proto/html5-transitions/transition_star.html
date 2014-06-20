@@ -42,7 +42,6 @@
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
-	<script src="../../libraries/javascript/snap.svg-0.3.0/snap.svg-min.js"></script>
 	<script>
 		function sleep(millis, callback) {
 			setTimeout(function () { callback(); }, millis);
@@ -140,100 +139,11 @@
 				}
 			});
 
-			//sleep(1000, startScene);
-
-			var FPS = 30;  /// "silver screen"
-			var isPlaying = true;
-			var maskingX = document.getElementById("masking").children[0].rx.baseVal;
-			var maskingY = document.getElementById("masking").children[0].ry.baseVal;
-			var start = (new Date()).getTime();
-			var now = new Date();
-			var duration = 3 * 1000;
-
-			/*
-			function loop() {
-				now = new Date();
-				nowMills = now.getTime();
-
-				var position = (nowMills - start) / duration;
-				maskingX.value = 1000 * position;
-				maskingY.value = 500 * position;
-
-				isPlaying = start + duration > nowMills;
-
-				if (isPlaying)
-					setTimeout(loop, 1);
-			}
-			loop();
-			*/
-
-			/*
-			setInterval(function () {
-				now = new Date();
-				nowMills = now.getTime();
-
-				var position = (nowMills - start) / duration;
-				maskingX.value = 1000 * position;
-				maskingY.value = 500 * position;
-			}, 16);
-			*/
-
-			/*
-			var rAF = window.requestAnimationFrame;
-			var start = new Date();
-			var now = new Date();
-
-			function update(timestamp) {
-				now = new Date();
-				var position = (now.getTime() - start.getTime()) / (5 * 1000);
-				var masking = document.getElementById("masking");
-				masking.children[0].rx.baseVal.value = 1000 * position;
-
-				if (start.getTime() + 5 * 1000 > now.getTime())
-					rAF(update);
-			}
-			rAF(update);
-			*/
-
-			/*
-			setTimeout(function () {
-				var isPlaying = true;
-
-				while (isPlaying) {
-					now = new Date();
-					nowMills = now.getTime();
-
-					var position = (nowMills - start) / duration;
-					maskingX.value = 1000 * position;
-					maskingY.value = 500 * position;
-
-					isPlaying = start + duration > nowMills;
-					render(state);
-				}
-			}, 1);
-			*/
-
-			var s = Snap("#svg");
-			var bigCircle = s.select("#ellipse");
-			bigCircle.animate({ rx: 1400 }, 3000);
-			bigCircle.animate({ ry: 800 }, 3000);
+			sleep(1000, startScene);
 		});
 	</script>
 </head>
 <body>
-	<svg id="svg">
-		<defs>
-			<filter id="filter2">
-				<feGaussianBlur stdDeviation="30"></feGaussianBlur>
-			</filter>
-			<mask id="masking">
-				<ellipse cx="50%" cy="50%" rx="0" ry="0" fill="white" filter="url(#filter2)" id="ellipse"></ellipse>
-			</mask>
-		</defs>
-		<image xlink:href="scene0.jpg" width="1920" height="1080" mask="url(#masking)"></image>
-	</svg>
-
-	<!--
 	<div id="scene0_wrapper" style="visibility: visible">
 		<div class="transition" id="scene0">
 			<img src="scene0.jpg" class="transitionSpinOut" />
@@ -245,6 +155,5 @@
 			<img src="scene1.jpg" class="transitionSpinOut" />
 		</div>
 	</div>
-	-->
 </body>
 </html>
