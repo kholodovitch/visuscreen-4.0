@@ -39,6 +39,12 @@
 			-ms-transition: all 3s ease-in-out;
 			transition: all 3s ease-in-out;
 		}
+		
+		#scene1, #scene0
+		{
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: 50%;
+		}
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
@@ -84,7 +90,8 @@
 				}
 
 				$(obj_name).removeClass("transition");
-				$(obj_name).css("opacity", "1");
+				$(obj_name).css("-webkit-mask-size", "0px 0px");
+				$(obj_name).css("-webkit-mask-image", "url(star.png)");
 				$(wrapper_name).css("z-index", "2");
 				$(next_wrapper_name).css("z-index", "1");
 				$(wrapper_name).css("visibility", "visible");
@@ -92,7 +99,7 @@
 
 				from.addEventListener("webkitTransitionEnd", func, false);
 				$(obj_name).addClass("transition");
-				$(obj_name).css("opacity", "0");
+				$(obj_name).css("-webkit-mask-size", "3840px 3840px");
 			}
 
 			function endTransition(event, sender) {
@@ -111,7 +118,8 @@
 				}
 
 				$(obj_name).removeClass("transition");
-				$(obj_name).css("opacity", "1");
+				$(obj_name).css("-webkit-mask-image", "none");
+				$(obj_name).css("-webkit-mask-size", "0px 0px");
 				$(wrapper_name).css("visibility", "hidden");
 				sender.removeEventListener("webkitTransitionEnd", func, false);
 				sleep(2000, function () { startTransition(next_obj, sender); });
