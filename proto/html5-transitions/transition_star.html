@@ -39,11 +39,12 @@
 			-ms-transition: all 3s ease-in-out;
 			transition: all 3s ease-in-out;
 		}
-		
+
 		#scene1, #scene0
 		{
 			-webkit-mask-repeat: no-repeat;
 			-webkit-mask-position: 50%;
+			-webkit-mask-size: 0px 0px;
 		}
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -52,6 +53,8 @@
 		function sleep(millis, callback) {
 			setTimeout(function () { callback(); }, millis);
 		}
+
+		var isReverse = true;
 
 		$(document).ready(function () {
 			function fullScreen(element) {
@@ -76,6 +79,12 @@
 
 			function startTransition(from, to) {
 				var obj_name, wrapper_name, next_wrapper_name, func;
+
+				if (isReverse) {
+					buffer = to;
+					to = from;
+					from = buffer;
+				}
 
 				if (from == scene0) {
 					obj_name = "#scene0";
@@ -103,18 +112,35 @@
 			}
 
 			function endTransition(event, sender) {
-				var obj_name, wrapper_name, next_obj, func;
+				var obj_name, next_obj_name, wrapper_name, next_obj, func;
+
+				if (isReverse) {
+					if (sender == scene0) {
+						sender = scene1;
+					}
+					else {
+						sender = scene0;
+					}
+				}
 
 				if (sender == scene0) {
 					obj_name = "#scene0";
+					next_obj_name = "#scene1";
 					wrapper_name = "#scene0_wrapper";
 					func = scene0_endTransition;
 					next_obj = scene1;
 				} else if (sender == scene1) {
 					obj_name = "#scene1";
+					next_obj_name = "#scene0";
 					wrapper_name = "#scene1_wrapper";
 					func = scene1_endTransition;
 					next_obj = scene0;
+				}
+
+				if (isReverse) {
+					buffer = next_obj_name;
+					next_obj_name = obj_name;
+					obj_name = buffer;
 				}
 
 				$(obj_name).removeClass("transition");
