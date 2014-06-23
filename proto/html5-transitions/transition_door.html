@@ -105,7 +105,7 @@
 					func = scene1_endTransition;
 				}
 
-				$(obj_name).clone().attr("id", obj_name.substr(1) + "r").appendTo(wrapper_name);
+				$(obj_name + "r").css("visibility", "visible");
 				$(obj_name + "r").addClass("right");
 				$(obj_name).addClass("left");
 
@@ -149,7 +149,7 @@
 					next_obj = scene0;
 				}
 
-				$(obj_name + "r").remove();
+				$(obj_name + "r").css("visibility", "hidden");
 				$(obj_name).removeClass("left");
 				$(obj_name).css("border-spacing", "0px");
 				$(obj_name).css("-webkit-transform", "rotateZ(0deg)");
@@ -189,10 +189,16 @@
 		<div id="scene0">
 			<img src="scene0.jpg" />
 		</div>
+		<div id="scene0r" style="visibility: hidden">
+			<img src="scene0.jpg" />
+		</div>
 	</div>
 	
 	<div id="scene1_wrapper" style="visibility: hidden">
 		<div id="scene1">
+			<img src="scene1.jpg" />
+		</div>
+		<div id="scene1r" style="visibility: hidden">
 			<img src="scene1.jpg" />
 		</div>
 	</div>
