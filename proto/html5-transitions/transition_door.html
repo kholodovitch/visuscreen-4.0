@@ -24,24 +24,9 @@
 			position: absolute;
 		}
 
-		.transition
+		#scene1_wrapper, #scene0_wrapper
 		{
 			-webkit-transform-style: preserve-3d;
-			-moz-transform-style: preserve-3d;
-			-ms-transform-style: preserve-3d;
-			transform-style: preserve-3d;
-			-webkit-transform-origin: 50% 100px 0;
-			-moz-transform-origin: 50% 100px 0;
-			-ms-transform-origin: 50% 100px 0;
-			transform-origin: 50% 100px 0;
-			-webkit-transition: all 3s ease-in-out;
-			-moz-transition: all 3s ease-in-out;
-			-ms-transition: all 3s ease-in-out;
-			transition: all 3s ease-in-out;
-		}
-
-		#scene1_wrapper
-		{
 			-webkit-perspective: 1536;
 			-webkit-perspective-origin: 50% 50%;
 		}
@@ -49,14 +34,14 @@
 		#scene1, #scene0
 		{
 			-webkit-transform-origin: 0% 100%;
+			border-spacing: 0px;
 		}
 
 		.right, .left
 		{
-			position: relative;
+			position: absolute;
 			overflow: hidden;
 			width: 960px;
-			float: left;
 		}
 
 		.left
@@ -69,6 +54,7 @@
 		{
 			-webkit-transform-origin-x: 100% !important;
 			-webkit-transform: rotateY(25deg);
+			left: 960px;
 		}
 
 		.right img
@@ -119,18 +105,33 @@
 					func = scene1_endTransition;
 				}
 
-				$(obj_name).removeClass("transition");
+				$(obj_name).clone().attr("id", obj_name.substr(1) + "r").appendTo(wrapper_name);
+				$(obj_name + "r").addClass("right");
+				$(obj_name).addClass("left");
+
 				$(obj_name).css("-webkit-transform", "none");
+				$(obj_name + "r").css("-webkit-transform", "none");
 				$(obj_name).css("opacity", "1");
+				$(obj_name + "r").css("opacity", "1");
 
 				$(wrapper_name).css("z-index", "2");
 				$(next_wrapper_name).css("z-index", "1");
 				$(wrapper_name).css("visibility", "visible");
 				$(next_wrapper_name).css("visibility", "visible");
 
-				from.addEventListener("webkitTransitionEnd", func, false);
-				$(obj_name).addClass("transition");
-				$(obj_name).css("-webkit-transform", "rotateY(-25deg)");
+				$(obj_name).animate({ borderSpacing: 90 }, {
+					step: function (now, fx) {
+						$(obj_name + "r").css('-webkit-transform', 'rotateY(' + now + 'deg)');
+						$(obj_name).css('-webkit-transform', 'rotateY(-' + now + 'deg)');
+
+						$(obj_name + "r").css('-webkit-transform', 'opacity(' + (90 - now) / 90 + ')');
+						$(obj_name).css('-webkit-transform', 'opacity(' + (90 - now) / 90 + ')');
+					},
+					duration: 3000,
+					complete: function () {
+						func(event, "webkitTransitionEnd")
+					}
+				}, 'linear');
 			}
 
 			function endTransition(event, sender) {
@@ -148,7 +149,9 @@
 					next_obj = scene0;
 				}
 
+				$(obj_name + "r").remove();
 				$(obj_name).removeClass("left");
+				$(obj_name).css("border-spacing", "0px");
 				$(obj_name).css("-webkit-transform", "rotateZ(0deg)");
 				$(wrapper_name).css("visibility", "hidden");
 				sender.removeEventListener("webkitTransitionEnd", func, false);
@@ -177,7 +180,7 @@
 				}
 			});
 
-			//sleep(1000, startScene);
+			sleep(1000, startScene);
 		});
 	</script>
 </head>
@@ -188,14 +191,13 @@
 		</div>
 	</div>
 	
-	<!--
 	<div id="scene1_wrapper" style="visibility: hidden">
 		<div id="scene1">
 			<img src="scene1.jpg" />
 		</div>
 	</div>
-	-->
 
+	<!--
 	<div id="scene1_wrapper" style="visibility: visible">
 		<div id="scene1" class="left">
 			<img src="scene1.jpg" />
@@ -204,5 +206,6 @@
 			<img src="scene1.jpg" />
 		</div>
 	</div>
+	-->
 </body>
 </html>
