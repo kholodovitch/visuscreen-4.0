@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>Example Fullscreen API</title>
+	<style type="text/css">
+		body
+		{
+			background-color: #000000;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		img, div
+		{
+			left: 0px;
+			top: 0px;
+			width: 1920px;
+			height: 1080px;
+			position: absolute;
+		}
+
+		.transition
+		{
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-webkit-transform-origin: 50% 100px 0;
+			-moz-transform-origin: 50% 100px 0;
+			-ms-transform-origin: 50% 100px 0;
+			transform-origin: 50% 100px 0;
+			-webkit-transition: all 3s ease-in-out;
+			-moz-transition: all 3s ease-in-out;
+			-ms-transition: all 3s ease-in-out;
+			transition: all 3s ease-in-out;
+		}
+
+		#scene1, #scene0
+		{
+			-webkit-mask-size: 1920px 1188px;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: 0px -108px;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
+	<script>
+		function sleep(millis, callback) {
+			setTimeout(function () { callback(); }, millis);
+		}
+
+		$(document).ready(function () {
+			function fullScreen(element) {
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.webkitRequestFullscreen) {
+					element.webkitRequestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				}
+			}
+
+			function fullScreenCancel() {
+				if (document.requestFullscreen) {
+					document.requestFullscreen();
+				} else if (document.webkitRequestFullscreen) {
+					document.webkitRequestFullscreen();
+				} else if (document.mozRequestFullScreen) {
+					document.mozRequestFullScreen();
+				}
+			}
+
+			function startTransition(from, to) {
+				var obj_name, wrapper_name, next_wrapper_name, func;
+
+				if (from == scene0) {
+					obj_name = "#scene0";
+					wrapper_name = "#scene0_wrapper";
+					next_wrapper_name = "#scene1_wrapper";
+					func = scene0_endTransition;
+				} else if (from == scene1) {
+					obj_name = "#scene1";
+					wrapper_name = "#scene1_wrapper";
+					next_wrapper_name = "#scene0_wrapper";
+					func = scene1_endTransition;
+				}
+
+				$(obj_name).removeClass("transition");
+				$(obj_name).css("-webkit-mask-image", "-webkit-linear-gradient(top, transparent, white 10%)");
+				$(obj_name).css("-webkit-mask-position", "0px -108px");
+				$(wrapper_name).css("z-index", "2");
+				$(next_wrapper_name).css("z-index", "1");
+				$(wrapper_name).css("visibility", "visible");
+				$(next_wrapper_name).css("visibility", "visible");
+
+				from.addEventListener("webkitTransitionEnd", func, false);
+				$(obj_name).addClass("transition");
+				$(obj_name).css("-webkit-mask-position", "0px 1080px");
+			}
+
+			function endTransition(event, sender) {
+				var obj_name, wrapper_name, next_obj, func;
+
+				if (sender == scene0) {
+					obj_name = "#scene0";
+					wrapper_name = "#scene0_wrapper";
+					func = scene0_endTransition;
+					next_obj = scene1;
+				} else if (sender == scene1) {
+					obj_name = "#scene1";
+					wrapper_name = "#scene1_wrapper";
+					func = scene1_endTransition;
+					next_obj = scene0;
+				}
+
+				$(obj_name).removeClass("transition");
+				$(obj_name).css("-webkit-mask-image", "none");
+				$(obj_name).css("-webkit-mask-position", "0px -108px");
+				$(wrapper_name).css("visibility", "hidden");
+				sender.removeEventListener("webkitTransitionEnd", func, false);
+				sleep(2000, function () { startTransition(next_obj, sender); });
+			}
+
+			function scene0_endTransition(event) {
+				endTransition(event, scene0);
+			}
+
+			function scene1_endTransition(event) {
+				endTransition(event, scene1);
+			}
+
+			function startScene() {
+				startTransition(scene0, scene1);
+			}
+
+			$('html').keydown(function (event) {
+				if (event.keyCode == 70) {
+					var html = document.documentElement;
+					fullScreen(html);
+				}
+				if (event.keyCode == 27) {
+					fullScreenCancel();
+				}
+			});
+
+			sleep(1000, startScene);
+		});
+	</script>
+</head>
+<body>
+	<div id="scene0_wrapper" style="visibility: visible">
+		<div class="transition" id="scene0">
+			<img src="scene0.jpg" class="transitionSpinOut" />
+		</div>
+	</div>
+
+	<div id="scene1_wrapper" style="visibility: hidden">
+		<div class="transition" id="scene1">
+			<img src="scene1.jpg" class="transitionSpinOut" />
+		</div>
+	</div>
+</body>
+</html>
