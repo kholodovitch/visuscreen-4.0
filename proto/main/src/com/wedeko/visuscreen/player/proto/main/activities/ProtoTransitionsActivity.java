@@ -36,8 +36,8 @@ public class ProtoTransitionsActivity extends Activity {
 				//new TransitionInfo(R.string.transition_rotate_wipe, R.drawable.transition_rotate_wipe, null),
 				//new TransitionInfo(R.string.transition_rotate_wipe2, R.drawable.transition_rotate_wipe2, null),
 				new TransitionInfo(R.string.transition_roll, R.drawable.transition_roll, "transition_roll.html"),
-				new TransitionInfo(R.string.transition_3D_door, R.drawable.transition_3d_door, null),
-				new TransitionInfo(R.string.transition_3D_rotate, R.drawable.transition_3d_rotate, null),
+				new TransitionInfo(R.string.transition_3D_door, R.drawable.transition_3d_door, "transition_door.html"),
+				new TransitionInfo(R.string.transition_3D_rotate, R.drawable.transition_3d_rotate, "transition_rotate.html"),
 				new TransitionInfo(R.string.transition_3D_spin, R.drawable.transition_3d_spin, "transition_spin.html"),
 				new TransitionInfo(R.string.transition_3D_explosion, R.drawable.transition_3d_explosion, null),
 		};

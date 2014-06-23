@@ -24,42 +24,41 @@
 			position: absolute;
 		}
 
-		#scene1_wrapper, #scene0_wrapper
+		#cubeCarousel
 		{
 			-webkit-transform-style: preserve-3d;
 			-webkit-perspective: 1536;
 			-webkit-perspective-origin: 50% 50%;
-		}
-
-		#scene1, #scene0
-		{
-			-webkit-transform-origin: 0% 100%;
-			border-spacing: 0px;
-		}
-
-		.right, .left
-		{
+			width: 1920px;
+			height: 1080px;
 			position: absolute;
-			overflow: hidden;
-			width: 960px;
 		}
 
-		.left
+		#cubeSpinner
 		{
-			-webkit-transform-origin-x: 0% !important;
-			-webkit-transform: rotateY(-25deg);
+			position: relative;
+			margin: 0 auto;
 		}
 
-		.right
+		.rotableCube
 		{
-			-webkit-transform-origin-x: 100% !important;
-			-webkit-transform: rotateY(25deg);
-			left: 960px;
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform-origin: 50% 0px -960px;
 		}
 
-		.right img
+		.transition
 		{
-			margin-left: -100%;
+			-webkit-transition: all 3s linear;
+		}
+
+		#cubeSpinner .one
+		{
+			-webkit-transform: translateZ(0px);
+		}
+
+		#cubeSpinner .two
+		{
+			-webkit-transform: rotateY(90deg) translateZ(960px) translateX(960px);
 		}
 	</style>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -91,70 +90,65 @@
 			}
 
 			function startTransition(from, to) {
-				var obj_name, wrapper_name, next_wrapper_name, func;
+				var obj_name, next_obj_name, wrapper_name, next_wrapper_name, func;
 
 				if (from == scene0) {
 					obj_name = "#scene0";
+					next_obj_name = "#scene1";
 					wrapper_name = "#scene0_wrapper";
 					next_wrapper_name = "#scene1_wrapper";
 					func = scene0_endTransition;
 				} else if (from == scene1) {
 					obj_name = "#scene1";
+					next_obj_name = "#scene0";
 					wrapper_name = "#scene1_wrapper";
 					next_wrapper_name = "#scene0_wrapper";
 					func = scene1_endTransition;
 				}
 
-				$(obj_name + "r").css("visibility", "visible");
-				$(obj_name + "r").addClass("right");
-				$(obj_name).addClass("left");
+				$(obj_name).removeClass("one");
+				$(obj_name).removeClass("two");
+				$(next_obj_name).removeClass("one");
+				$(next_obj_name).removeClass("two");
 
-				$(obj_name).css("-webkit-transform", "none");
-				$(obj_name + "r").css("-webkit-transform", "none");
-				$(obj_name).css("opacity", "1");
-				$(obj_name + "r").css("opacity", "1");
-
-				$(wrapper_name).css("z-index", "2");
-				$(next_wrapper_name).css("z-index", "1");
+				$(obj_name).addClass("one");
+				$(next_obj_name).addClass("two");
+				$("#cubeSpinner").css("-webkit-transform", "none");
 				$(wrapper_name).css("visibility", "visible");
 				$(next_wrapper_name).css("visibility", "visible");
 
-				$(obj_name).animate({ borderSpacing: 90 }, {
-					step: function (now, fx) {
-						$(obj_name + "r").css('-webkit-transform', 'rotateY(' + now + 'deg)');
-						$(obj_name).css('-webkit-transform', 'rotateY(-' + now + 'deg)');
-
-						$(obj_name + "r").css('-webkit-transform', 'opacity(' + (90 - now) / 90 + ')');
-						$(obj_name).css('-webkit-transform', 'opacity(' + (90 - now) / 90 + ')');
-					},
-					duration: 3000,
-					complete: function () {
-						func(event, "webkitTransitionEnd")
-					}
-				}, 'linear');
+				cubeSpinner.addEventListener("webkitTransitionEnd", func, false);
+				$("#cubeSpinner").addClass("transition");
+				$("#cubeSpinner").css("-webkit-transform", "rotateY(-90deg)");
 			}
 
 			function endTransition(event, sender) {
-				var obj_name, wrapper_name, next_obj, func;
+				var obj_name, next_obj_name, wrapper_name, next_obj, func;
 
 				if (sender == scene0) {
 					obj_name = "#scene0";
+					next_obj_name = "#scene1";
 					wrapper_name = "#scene0_wrapper";
 					func = scene0_endTransition;
 					next_obj = scene1;
 				} else if (sender == scene1) {
 					obj_name = "#scene1";
+					next_obj_name = "#scene0";
 					wrapper_name = "#scene1_wrapper";
 					func = scene1_endTransition;
 					next_obj = scene0;
 				}
+				console.log(obj_name);
 
-				$(obj_name + "r").css("visibility", "hidden");
-				$(obj_name).removeClass("left");
-				$(obj_name).css("border-spacing", "0px");
-				$(obj_name).css("-webkit-transform", "rotateZ(0deg)");
+				$("#cubeSpinner").removeClass("transition");
+				$(obj_name).removeClass("one");
+				$(obj_name).removeClass("two");
+				$(next_obj_name).removeClass("one");
+				$(next_obj_name).removeClass("two");
+
+				$("#cubeSpinner").css("-webkit-transform", "none");
+				cubeSpinner.removeEventListener("webkitTransitionEnd", func, false);
 				$(wrapper_name).css("visibility", "hidden");
-				sender.removeEventListener("webkitTransitionEnd", func, false);
 				sleep(2000, function () { startTransition(next_obj, sender); });
 			}
 
@@ -184,34 +178,21 @@
 		});
 	</script>
 </head>
-<body>
-	<div id="scene0_wrapper" style="visibility: visible">
-		<div id="scene0">
-			<img src="img/scene0.jpg" />
-		</div>
-		<div id="scene0r" style="visibility: hidden">
-			<img src="img/scene0.jpg" />
-		</div>
-	</div>
-	
-	<div id="scene1_wrapper" style="visibility: hidden">
-		<div id="scene1">
-			<img src="img/scene1.jpg" />
-		</div>
-		<div id="scene1r" style="visibility: hidden">
-			<img src="img/scene1.jpg" />
-		</div>
-	</div>
 
-	<!--
-	<div id="scene1_wrapper" style="visibility: visible">
-		<div id="scene1" class="left">
-			<img src="img/scene1.jpg" />
-		</div>
-		<div id="scene1r" class="right">
-			<img src="img/scene1.jpg" />
+<body>
+	<div id="cubeCarousel">
+		<div id="cubeSpinner" class="rotableCube">
+			<div id="scene0_wrapper" style="visibility: visible">
+				<div class="face one" id="scene0">
+					<img src="img/scene0.jpg" class="transitionSpinOut" />
+				</div>
+			</div>
+			<div id="scene1_wrapper" style="visibility: visible">
+				<div class="face two" id="scene1">
+					<img src="img/scene1.jpg" class="transitionSpinOut" />
+				</div>
+			</div>
 		</div>
 	</div>
-	-->
 </body>
 </html>
