@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>Example Fullscreen API</title>
+	<style type="text/css">
+		@-webkit-keyframes spinBack
+		{
+			0%
+			{
+				-webkit-transform: rotate3d(1,0,0,0);
+			}
+
+			100%
+			{
+				-webkit-transform: rotate3d(1,0,0,-180deg);
+			}
+		}
+
+		@-webkit-keyframes spinFront
+		{
+			0%
+			{
+				-webkit-transform: rotate3d(1,0,0,0);
+			}
+
+			50%
+			{
+				-webkit-transform: rotate3d(1,0,0, 90deg);
+			}
+		}
+
+		body
+		{
+			background-color: #000000;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		img, div
+		{
+			left: 0px;
+			top: 0px;
+			width: 1920px;
+			height: 1080px;
+			position: absolute;
+		}
+
+		.transition
+		{
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-webkit-transition: all 3s ease-in-out;
+			-moz-transition: all 3s ease-in-out;
+			-ms-transition: all 3s ease-in-out;
+			transition: all 3s ease-in-out;
+		}
+
+		#scene1_wrapper, #scene0_wrapper
+		{
+			-webkit-perspective: 1000;
+			-webkit-transform-style: preserve-3d; /* Chrome, Safari, Opera */
+		}
+
+		#scene1, #scene0
+		{
+			-webkit-backface-visibility: hidden;
+			border-spacing: 0px;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://examples.it-kregi.ru/fullscreen-api/jquery.fittext.js"></script>
+	<script>
+		function sleep(millis, callback) {
+			setTimeout(function () { callback(); }, millis);
+		}
+
+		$(document).ready(function () {
+			function fullScreen(element) {
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.webkitRequestFullscreen) {
+					element.webkitRequestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				}
+			}
+
+			function fullScreenCancel() {
+				if (document.requestFullscreen) {
+					document.requestFullscreen();
+				} else if (document.webkitRequestFullscreen) {
+					document.webkitRequestFullscreen();
+				} else if (document.mozRequestFullScreen) {
+					document.mozRequestFullScreen();
+				}
+			}
+
+			function startTransition(from, to) {
+				var obj_name, next_obj_name, wrapper_name, next_wrapper_name, func;
+
+				if (from == scene0) {
+					obj_name = "#scene0";
+					next_obj_name = "#scene1";
+					wrapper_name = "#scene0_wrapper";
+					next_wrapper_name = "#scene1_wrapper";
+					func = scene0_endTransition;
+				} else if (from == scene1) {
+					obj_name = "#scene1";
+					next_obj_name = "#scene0";
+					wrapper_name = "#scene1_wrapper";
+					next_wrapper_name = "#scene0_wrapper";
+					func = scene1_endTransition;
+				}
+
+				$(obj_name).css("-webkit-transform", "none");
+				$(next_obj_name).css("-webkit-transform", "none");
+				$(wrapper_name).css("z-index", "2");
+				$(next_wrapper_name).css("z-index", "1");
+				$(wrapper_name).css("visibility", "visible");
+				$(next_wrapper_name).css("visibility", "visible");
+
+				$(obj_name).animate({ borderSpacing: 180 }, {
+					step: function (now, fx) {
+						$(next_obj_name).css('-webkit-transform', 'rotateX(' + (now - 180) + 'deg)');
+						$(obj_name).css('-webkit-transform', 'rotateX(' + now + 'deg)');
+					},
+					duration: 3000,
+					complete: function () {
+						func(event, "webkitTransitionEnd")
+					}
+				}, 'linear');
+			}
+
+			function endTransition(event, sender) {
+				var obj_name, next_obj_name, wrapper_name, next_obj, func;
+
+				if (sender == scene0) {
+					obj_name = "#scene0";
+					next_obj_name = "#scene1";
+					wrapper_name = "#scene0_wrapper";
+					func = scene0_endTransition;
+					next_obj = scene1;
+				} else if (sender == scene1) {
+					obj_name = "#scene1";
+					next_obj_name = "#scene0";
+					wrapper_name = "#scene1_wrapper";
+					func = scene1_endTransition;
+					next_obj = scene0;
+				}
+
+				$(obj_name).css("border-spacing", "0px");
+				$(obj_name).css("-webkit-transform", "none");
+				$(next_obj_name).css("-webkit-transform", "none");
+				$(wrapper_name).css("visibility", "hidden");
+				sleep(2000, function () { startTransition(next_obj, sender); });
+			}
+
+			function scene0_endTransition(event) {
+				endTransition(event, scene0);
+			}
+
+			function scene1_endTransition(event) {
+				endTransition(event, scene1);
+			}
+
+			function startScene() {
+				startTransition(scene0, scene1);
+			}
+
+			$('html').keydown(function (event) {
+				if (event.keyCode == 70) {
+					var html = document.documentElement;
+					fullScreen(html);
+				}
+				if (event.keyCode == 27) {
+					fullScreenCancel();
+				}
+			});
+
+			sleep(1000, startScene);
+		});
+	</script>
+</head>
+<body>
+	<div id="#root">
+		<div id="scene0_wrapper" style="visibility: visible">
+			<div id="scene0">
+				<img src="img/scene0.jpg" class="transitionSpinOut" />
+			</div>
+		</div>
+
+		<div id="scene1_wrapper" style="visibility: visible">
+			<div id="scene1">
+				<img src="img/scene1.jpg" class="transitionSpinOut" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>
