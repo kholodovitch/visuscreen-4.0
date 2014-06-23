@@ -15,8 +15,6 @@ public class PlayerApplication extends Application {
 		super.onCreate();
 
 		Context = getApplicationContext();
-
-		AssetsHelper.copyFilesToSdCard();
 	}
 
 	public static boolean canWriteOnExternalStorage() {

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import android.content.res.AssetManager;
 import android.util.Log;
@@ -12,23 +13,34 @@ import android.util.Log;
 public class AssetsHelper {
 
 	final static String TARGET_BASE_PATH;
+	private static AssetManager AssetManager;
 
 	static {
 		TARGET_BASE_PATH = PlayerApplication.getStorageDirectory();
+		AssetManager = PlayerApplication.Context.getAssets();
 	}
 
-	public static void copyFilesToSdCard() {
-		copyFileOrDir(""); // copy all files in assets folder in my project
+	public static void copyFilesToSdCard(IProgressable progressable) {
+		copyFileOrDir("", new ArrayList<String>(), true, progressable); // copy all files in assets folder in my project
 	}
 
-	private static void copyFileOrDir(String path) {
-		AssetManager assetManager = PlayerApplication.Context.getAssets();
+	private static void copyFileOrDir(String path, ArrayList<String> files, boolean needCopy, IProgressable progressable) {
 		String assets[] = null;
+
+		if (needCopy && progressable != null) {
+			progressable.progress(0.1);
+		}
+
 		try {
 			Log.i("tag", "copyFileOrDir() " + path);
-			assets = assetManager.list(path);
+			if (!needCopy && (path.endsWith(".html") || path.endsWith(".jpg") || path.endsWith(".png"))) {
+				files.add(path);
+				return;
+			}
+
+			assets = AssetManager.list(path);
 			if (assets.length == 0) {
-				copyFile(path);
+				files.add(path);
 			} else {
 				String fullPath = TARGET_BASE_PATH + "/" + path;
 				Log.i("tag", "path=" + fullPath);
@@ -44,7 +56,18 @@ public class AssetsHelper {
 						p = path + "/";
 
 					if (!path.startsWith("images") && !path.startsWith("sounds") && !path.startsWith("webkit"))
-						copyFileOrDir(p + assets[i]);
+						copyFileOrDir(p + assets[i], files, false, null);
+				}
+			}
+			
+			if (needCopy) {
+				for (int i = 0; i < files.size(); i++) {
+					copyFile(files.get(i));
+
+					if (progressable != null) {
+						double copyProgress = (i + 1) / (double) files.size();
+						progressable.progress(0.1 + copyProgress * 0.9);
+					}
 				}
 			}
 		} catch (IOException ex) {
@@ -52,11 +75,8 @@ public class AssetsHelper {
 		}
 	}
 
-	private static void copyFile(String filename) {
+	private static void copyFile(String filename) throws IOException {
 		String newFileName = TARGET_BASE_PATH + "/" + filename;
-		if (new File(newFileName).exists())
-			return;
-		
 		AssetManager assetManager = PlayerApplication.Context.getAssets();
 
 		InputStream in = null;
@@ -80,6 +100,5 @@ public class AssetsHelper {
 			Log.e("tag", "Exception in copyFile() of " + newFileName);
 			Log.e("tag", "Exception in copyFile() " + e.toString());
 		}
-
 	}
 }
