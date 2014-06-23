@@ -36,7 +36,7 @@ video,#scene0 {
 		scene1.addEventListener("ended", function(event) {
 			foobar_cont();
 		}, false);
-
+/*
 		scene1.addEventListener("loadeddata", function() {
 			setTimeout(function() {
 				scene1.play();
@@ -45,7 +45,7 @@ video,#scene0 {
 				});
 			}, 1000);
 		});
-
+*/
 		function foobar_cont() {
 			try {
 				scene1.currentTime = 0;
@@ -57,7 +57,7 @@ video,#scene0 {
 </script>
 </head>
 <body>
-	<video id="scene1" poster="video/Imagefilm_Salat_mit_Garnelen.jpg" preload="auto" autoplay="autoplay" loop>
+	<video id="scene1" poster="video/Imagefilm_Salat_mit_Garnelen.jpg" autoplay loop>
 		<source src="video/Imagefilm_Salat_mit_Garnelen.mp4" type="video/mp4">
 		Your browser does not support the video tag.
 	</video>

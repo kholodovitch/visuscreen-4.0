@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="19"
         android:targetSdkVersion="8" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,6 +22,7 @@
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
             android:name=".main.activities.SplashActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
             <intent-filter>

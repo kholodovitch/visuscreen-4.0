@@ -1,9 +1,9 @@
 package com.wedeko.visuscreen.player.proto.main.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
-
 import com.mogoweb.chrome.WebView;
 import com.wedeko.visuscreen.player.proto.R;
 import com.wedeko.visuscreen.player.proto.main.PlayerApplication;
@@ -13,6 +13,7 @@ public class Html5ViewActivity extends Activity {
 	private WebView webView;
 
 	@Override
+	@SuppressLint("SetJavaScriptEnabled")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -34,5 +35,12 @@ public class Html5ViewActivity extends Activity {
 			if (targetHtml != null)
 				webView.loadUrl("file://" + PlayerApplication.getStorageDirectory() + "/" + targetHtml);
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+
+		webView.loadUrl("about:blank"); 
 	}
 }
